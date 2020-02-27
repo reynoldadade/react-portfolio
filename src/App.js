@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Projects from './Projects';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends Component {
+  state = { displayBio: false };
+
+  toggleDisplayBio = () => {
+    this.setState({
+      displayBio: !this.state.displayBio,
+    });
+  };
+  render() {
+    const bio = this.state.displayBio ? (
+      <div>
+        <p>I live in Accra and code only on weekdays</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          My favoirite language is javacript and i think react is quite
+          interesting
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <p>Besides coding i read and i love chicken wings and pizzas!</p>
+        <button onClick={this.toggleDisplayBio}>Show less</button>
+      </div>
+    ) : (
+      <div>
+        <button onClick={this.toggleDisplayBio}>Read more</button>
+      </div>
+    );
+
+    return (
+      <div>
+        <h1>Hello!</h1>
+        <p>Hello my name is Reynold. I am a software engineer.</p>
+        <p>
+          I am always looking forward to working on new technologies and
+          projects
+        </p>
+        {bio}
+        <hr />
+        <Projects />
+      </div>
+    );
+  }
 }
 
 export default App;
